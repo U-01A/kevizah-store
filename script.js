@@ -8,7 +8,8 @@ function setCart(value){state.inCart=value;localStorage.setItem('kevizah-cart',v
 document.querySelectorAll('.thumb').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));button.classList.add('active');$('main-image').src=button.dataset.image;$('main-image').alt=button.dataset.alt}));
 $('add-to-cart').addEventListener('click',()=>{setCart(true);toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800);openCart()});
 $('open-cart').addEventListener('click',openCart);$('close-cart').addEventListener('click',closeCart);$('continue-shopping').addEventListener('click',closeCart);overlay.addEventListener('click',closeCart);$('remove-item').addEventListener('click',()=>setCart(false));
-$('checkout').addEventListener('click',()=>{$('checkout-dialog').showModal()});$('close-dialog').addEventListener('click',()=>$('checkout-dialog').close());$('dialog-done').addEventListener('click',()=>$('checkout-dialog').close());
+const STRIPE_CHECKOUT_URL='https://buy.stripe.com/8x29ATcep9recfzd5ubV600';
+$('checkout').addEventListener('click',()=>{window.location.assign(STRIPE_CHECKOUT_URL)});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeCart()});
 render();
 
